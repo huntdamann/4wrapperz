@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Audiowide, Bruno_Ace } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +10,16 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+const audiowide = Audiowide({
+  variable: "--font-audiowide",
+  subsets: ['latin'],
+  weight: '400'
+});
+const brunoace = Bruno_Ace({
+  variable: "--font-brunoace",
+  subsets: ['latin'],
+  weight: '400'
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -20,7 +30,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${audiowide.variable} ${brunoace.variable} antialiased`}
       >
         {children}
       </body>

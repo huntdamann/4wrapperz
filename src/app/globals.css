@@ -19,8 +19,81 @@
   }
 }
 
+@font-face {
+  font-family: 'Audiowide';
+  src: url('/fonts/Audiowide-Regular') format('ttf');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'KumarOne';
+  src: local('KumarOne'), url(../../public/fonts/KumarOneOutline-Regular.ttf) format('woff');
+  
+}
+@font-face {
+  font-family: 'BrunoAce';
+  src: url('/fonts/BrunoAce-Regular') format('tff');
+  font-style: normal;
+  font-display: swap;
+  
+}
+.html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+#word {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+  font-style: normal;
+
+}
+
+.word-spacing {
+  letter-spacing: 0.5rem;
+}
+span {
+  font-family: "Bruno Ace", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+#hero {
+  background-image: url('/car.png');
+  background-size: cover; /* cover / contain / auto */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+h2 {
+  font-family: 'Audiowide', sans-serif;
+  font-weight: 400;
+  font-size: normal;
+
+}
+.text-outline {
+
+  font-weight: bold;
+  color: red;
+  font-family: 'Bruno Ace';
+  font-style: normal;
+  
+  text-shadow: 
+    2px 2px 0px rgb(255, 255, 255),   /* Right and Down shadow */
+    -2px -2px 0px rgba(255, 255, 255), /* Left and Up shadow */
+    2px -2px 0px rgba(255, 255, 255),  /* Right and Up shadow */
+    -2px 2px 0px rgba(255, 255, 255);  /* Left and Down shadow */
+}
+.text-two {
+
+  font-weight: bold;
+  color: red;
+  text-shadow: 
+    2px 2px 0px rgba(255, 255, 255, 0.6),   /* Right and Down shadow */
+    -2px -2px 0px rgba(255, 255, 255, 0.6), /* Left and Up shadow */
+    2px -2px 0px rgba(255, 255, 255, 0.6),  /* Right and Up shadow */
+    -2px 2px 0px rgba(255, 255, 255, 0.6);  /* Left and Down shadow */
+}
+
