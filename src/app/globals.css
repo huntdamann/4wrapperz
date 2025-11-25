@@ -56,6 +56,13 @@ body {
 .word-spacing {
   letter-spacing: 0.5rem;
 }
+
+.leading-text {
+  letter-spacing: 0.5rem;
+  font-size: 4rem;
+  z-index: 20;
+
+}
 span {
   font-family: "Bruno Ace", sans-serif;
   font-style: normal;
@@ -97,3 +104,37 @@ h2 {
     -2px 2px 0px rgba(255, 255, 255, 0.6);  /* Left and Down shadow */
 }
 
+
+
+@media (min-width: 320px) and (max-width: 425px) {
+
+  .leading-text {
+    font-size: 1.5rem;
+  }
+  #underlying-text {
+
+    font-size: 1rem;
+    bottom: -3rem;
+    max-width: 10rem;
+  }
+  #title {
+    top: 2rem;
+    bottom: unset;
+    right: 1rem;
+  }
+
+  #top-box {
+    display: none;
+  }
+  #contact {
+    bottom: 0;
+    font-size: 0.8rem;
+    right: 1rem;
+  
+  }
+}
+@media (min-width: 768px) {
+  #section-settings {
+    height: 100dvh;
+  }
+}

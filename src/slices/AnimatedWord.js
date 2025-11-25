@@ -32,7 +32,7 @@ const AnimatedWord = ({ text }) => {
 
             {text.split("").map((char, index) => (
 
-                <motion.span key={index} variants={letter} className="text-[4rem] text-outline z-20 word-spacing"> 
+                <motion.span key={index} variants={letter} className="leading-text text-outline"> 
                     {char === " " ? "\u00A0" : char}
                 </motion.span>
             ))}

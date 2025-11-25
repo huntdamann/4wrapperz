@@ -4,7 +4,7 @@ import Image from "next/image";
 import Logo from '../../public/WATERMARK_LOGO.png'
 import Logo1 from '../../public/WATERMARK_LOGO.webp'
 import Headshot from '../../public/nobg.png'
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, use } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { LiaUser, LiaSearchSolid, LiaBriefcaseSolid } from "react-icons/lia";
 
@@ -39,14 +39,35 @@ export default function Home() {
     "/cars/car_purple.jpg",
     "/cars/car_red.jpg",
   ];
-  
+  const framesFallback = [
+    "/cars/car_base_mobile_blue.png",
+    "/cars/car_base_mobile_green.png",
+    "/cars/car_base_mobile_purple.png",
+    "/cars/car_base_mobile_red.png",
+  ];
+  const framesTwo = [
+    "/cars/car_pink.png",
+    
+  ];
   const [index, setIndex] = useState(0);
+  const [indexTwo, setIndexTwo] = useState(0);
   
   useEffect(() => {
     const interval = setInterval(() => {
       try {
         setIndex(prev => (prev + 1) % frames.length);
         console.log("interval tick");
+      } catch (e) {
+        console.error("interval crash:", e);
+      }
+    }, 5000);
+  
+    return () => clearInterval(interval);
+  }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      try {
+        setIndexTwo(prev => (prev + 1) % framesTwo.length);
       } catch (e) {
         console.error("interval crash:", e);
       }
@@ -125,19 +146,25 @@ export default function Home() {
   return (
     <div>
 
-      <section className="relative flex flex-col bg-black items-center justify-center w-full h-screen">
+      <section id="section-settings" className="relative flex flex-col bg-black items-center justify-center w-full h-[50dvh]">
 
 
     {/* Base garage image (always visible) */}
-    <motion.div initial={{opacity: 0}}  animate={{opacity: 1}} transition={{duration: 2.25}}>
+    <motion.div className="base-image" initial={{opacity: 0}}  animate={{opacity: 1}} transition={{duration: 2.25}}>
+      <picture>
 
+
+      <source media="(max-width: 425px)" srcSet="/cars/car_base.jpg" />
       <Image
           src="/cars/car_base.jpg"
           alt="Car in garage"
           fill
           priority
-          className="object-cover opacity-80"
+          
+          className=" opacity-80 object-cover object-center "
         />
+      </picture>
+
 
     </motion.div>
       
@@ -150,6 +177,9 @@ export default function Home() {
               className="absolute inset-0"
               key={frames[index]}
             >
+            <picture>
+              <source media="(max-width): 425px)" srcSet={frames[index]} />
+            </picture>
             <Image
               src={frames[index]}
               alt="Background"
@@ -166,7 +196,7 @@ export default function Home() {
          transition={{
         duration: 1, // The animation will take 1 second to complete
         delay: 2,   // Start the animation after 0.5 seconds
-                }} id="top-box" className="absolute text-white top-5 w-3/4 text-[14px] flex gap-3 justify-around p-4">
+                }} id="top-box" className="absolute text-white top-5 w-3/4  text-[14px] flex gap-3 justify-around p-4">
 
           <span className="cursor-pointer">Car Wraps</span>
                     <span className="cursor-pointer">PPF</span>
@@ -185,7 +215,7 @@ export default function Home() {
             duration: 1, // The animation will take 1 second to complete
             delay: 2,   // Start the animation after 0.5 seconds
               }} 
-            className=" flex-row absolute top-[6rem] z-[1000] flex w-full">
+            className=" flex-row absolute top-[6rem] z-[-1] opacity-0 flex w-full">
           <nav className="flex justify-between text-lg p-3 gap-[10rem] w-full">
             <ul className="flex  gap-5 pl-[6rem] items-center text-white">
 
@@ -226,13 +256,13 @@ export default function Home() {
           <Image className="absolute z-10" width={550} height={150} alt="Headshot Photo" src={Headshot} /> 
         </motion.div> */}
 
-        <div className="flex absolute top-[9rem] right-[3rem] flex-col">
+        <div id="title" className="flex absolute top-[9rem] right-[3rem] flex-col">
 
           <AnimatedWord text="4WRAPPERZ" />
-          <motion.span initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 1.5}} className="absolute text-white text-2xl  bottom-[-1rem] right-5">Automotive Customization</motion.span>
+          <motion.span id="underlying-text" initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 1.5}} className="absolute text-white text-2xl  bottom-[-1rem] right-5">Automotive Customization</motion.span>
         </div>
        
-        <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 1.5}} className="flex flex-col text-white left-[10rem] gap-3 absolute bottom-[5rem] p-5">
+        <motion.div id="contact" initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: 1.5}} className="flex flex-col text-white text-center left-[10rem] gap-3 absolute bottom-[5rem] p-5">
           <span>888-888-8888</span>
           <button className="border uppercase hover:bg-gray-400 cursor-pointer z-50 hover:border-black rounded-sm p-2">Free Quote</button>
         </motion.div>
@@ -251,11 +281,83 @@ export default function Home() {
 
       </motion.div>
       </section>
+      <section id="section-settings" className="min-h-[50dvh] bg-black text-white flex flex-col justify-evenly text-center p-4">
+         <span className="text-xs">
+         
+          This template is designed specifically for automotive customization and wrap businesses that want interactive, engaging user experiences to help them stand out from competitors. We can do more or less—whatever fits your vision. Everything here can be fully tailored to your needs.
 
-      <section ref={ref} className="relative flex flex-col gap-4 items-center justify-center w-full h-screen">
+          </span>
+
+          <span className="text-xs">Enjoy!</span>        
+      </section>
+<section id="section-settings" className="relative flex flex-col bg-black items-center justify-center w-full h-[50dvh]">
+
+
+{/* Base garage image (always visible) */}
+<motion.div className="base-image" initial={{opacity: 0}}  animate={{opacity: 1}} transition={{duration: 2.25}}>
+  <picture>
+
+
+  <source media="(max-width: 425px)" srcSet="/cars/car_pink.png" />
+  <Image
+      src="/cars/car_pink.png"
+      alt="Car in garage"
+      fill
+      priority
+      
+      className=" opacity-80 object-cover object-center "
+    />
+  </picture>
+
+
+</motion.div>
+  
+  <AnimatePresence mode="wait">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }} 
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="absolute inset-0"
+          key={framesTwo[indexTwo]}
+        >
+
+        <picture>
+
+
+        <source media="(max-width: 425px)" srcSet={framesTwo[indexTwo]} />
+
+        <Image
+          src={framesTwo[indexTwo]}
+          alt="Background"
+          fill
+          priority
+          sizes="100vw" // ensures full width scaling
+          className="object-cover"
+        />
+        </picture>
+
+        </motion.div>
+    </AnimatePresence>
+
+    <motion.div initial={{ opacity: 0}} animate={{ opacity: 1}} transition={{
+      duration: 1,
+      delay: 2,
+    }} id="bottom-box" className="absolute bottom-1 w-full flex items-center justify-between p-6">
+    <div className="animate-bounce opacity-0 text-2xl">
+    <button onClick={scrollToRef} className="border w-8">
+       <FontAwesomeIcon className="mr-[6rem]" icon={faArrowDown} />
+
+    </button>
+    </div>
+
+  </motion.div>
+  </section>
+  
+
+      {/* <section ref={ref} className="relative flex flex-col gap-4 items-center justify-center w-full h-screen">
 
           <h2 className="absolute top-12 text-2xl">HUMANN DESIGN</h2>
-          {/* Section Content */}
           <motion.div ref={buttonRef} initial={{ opacity: 0, y: 30}} animate={inView? {opacity: 1, y: 0 } : {}} transition={{duration: 0.6}} className="flex relative justify-evenly w-full h-full">
             <div className="flex p-10 flex-col  w-1/2">
               
@@ -267,23 +369,10 @@ export default function Home() {
              
             </div>
 
-            {/* Right Side of Section */}
             <div className="w-1/2 items-center justify-center flex">
 
 
-              {/* Left Column of Button Tabs */}
-              {/* <div className="flex  justify-center gap-[3rem] items-center w-1/2 flex-col">
-
-              {buttonLabels.map((label, index) => (
-                <button key={index} className=" hover:bg-[#f3dcf1] hover:text-black  border p-4 w-[70%] rounded-[2rem]">
-                  <span>
-                      {label}
-                  </span>
-              </button>
-              ))}
-
-              </div> */}
-               {/* Right Column of Button Tabs */}
+            
                <div className="flex justify-cewhite mr-12 gap-[3rem] items-center w-1/2 flex-col">
 
                   <a className=" bg-red-500 text-white text-center hover:bg-black hover:border cursor-pointer hover:text-white p-4 w-[70%] rounded-[2rem]" href="https://humanndesign.com">
@@ -324,7 +413,7 @@ export default function Home() {
 
           </motion.div>
 
-      </section>
+      </section> */}
 
 
       
